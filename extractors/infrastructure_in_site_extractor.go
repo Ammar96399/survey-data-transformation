@@ -15,8 +15,10 @@ func ExtractAndSaveInfrastructureInSituData(filePath string, outputFilePath stri
 	}{}
 	for _, result := range surveyResult.Results {
 		observatoryData := structs.ObservatoryInfrastructureInSitu{
-			Name:                      result.ObservatoryInformation.Observatory,
-			Site:                      result.ObservatoryInformation.ObservatorySite,
+			Observatory: structs.Observatory{
+				Name: result.ObservatoryInformation.Observatory,
+				Site: result.ObservatoryInformation.ObservatorySite,
+			},
 			InfrastructureInSitu:      result.ExistingSystem.InfrastructureDetails.OnsiteInfrastructure == "Oui",
 			EnergySource:              result.ExistingSystem.InfrastructureDetails.EnergySource,
 			InternetConnexion:         result.ExistingSystem.InfrastructureDetails.InternetConnexion,

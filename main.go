@@ -21,9 +21,9 @@ func main() {
 	if err := extractor.ExtractAndSaveCommunicationData(inputFile, "observatories_communication_data.json"); err != nil {
 		fmt.Print("Error:", err)
 	}
-	/*if err := extractor.ExtractPersonOnSite(inputFile, "observatories_person_on_site.json"); err != nil {
+	if err := extractor.ExtractPersonOnSite(inputFile, "observatories_person_on_site.json"); err != nil {
 		fmt.Print("Error", err)
-	}*/
+	}
 	if err := extractor.ExtractAndSaveInfrastructureInSituData(inputFile, "observatories_infrastructure_in_situ.json"); err != nil {
 		fmt.Print("Error", err)
 	}

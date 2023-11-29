@@ -15,8 +15,10 @@ func ExtractPersonOnSite(filePath string, outputFilePath string) error {
 	}{}
 	for _, result := range surveyResult.Results {
 		observatoryData := structs.PersonOnSite{
-			Name:   result.ObservatoryInformation.Observatory,
-			Site:   result.ObservatoryInformation.ObservatorySite,
+			Observatory: structs.Observatory{
+				Name: result.ObservatoryInformation.Observatory,
+				Site: result.ObservatoryInformation.ObservatorySite,
+			},
 			Answer: result.Personnel.DedicatedPersonnel,
 		}
 		observatoriesData.Results = append(observatoriesData.Results, observatoryData)
