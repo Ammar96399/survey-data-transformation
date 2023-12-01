@@ -29,8 +29,7 @@ func ProcessExistingDataProcessing(filePath string, outputFilePath string) error
 	}{}
 	for _, result := range surveyResult.Results {
 		observatoryData := structs.PreProcessingInSitu{
-			Name:                result.Observatory.Name,
-			Site:                result.Observatory.Site,
+			Observatory:         result.Observatory,
 			PreProcessingInSitu: getIfPreProcessing(result.InSituDataProcessing),
 			PreProcessingAnswer: result.InSituDataProcessing,
 		}

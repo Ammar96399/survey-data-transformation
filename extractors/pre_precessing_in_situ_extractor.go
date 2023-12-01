@@ -15,8 +15,10 @@ func ExtractPreProcessingInSitu(filePath string, outputFilePath string) error {
 	}{}
 	for _, result := range surveyResult.Results {
 		observatoryData := structs.PreProcessingInSitu{
-			Name:                result.ObservatoryInformation.Observatory,
-			Site:                result.ObservatoryInformation.ObservatorySite,
+			Observatory: structs.Observatory{
+				Name: result.ObservatoryInformation.Observatory,
+				Site: result.ObservatoryInformation.ObservatorySite,
+			},
 			PreProcessingInSitu: getIfPreProcessing(result.ExistingSystem.DataProcessing.InSituDataProcessing),
 			PreProcessingAnswer: result.ExistingSystem.DataProcessing.InSituDataProcessing,
 		}

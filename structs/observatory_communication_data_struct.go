@@ -2,8 +2,7 @@ package structs
 
 // ObservatoryCommunicationData represents the structure for each observatory's communication data
 type ObservatoryCommunicationData struct {
-	Name              string                  `json:"observatory"`
-	Site              string                  `json:"observatorySite"`
+	Observatory       Observatory             `json:"observatory"`
 	CommunicationData CommunicationTechniques `json:"communicationData"`
 }
 

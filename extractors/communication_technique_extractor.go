@@ -16,8 +16,10 @@ func ExtractAndSaveCommunicationData(filePath string, outputFilePath string) err
 
 	for _, result := range surveyResult.Results {
 		communicationData := structs.ObservatoryCommunicationData{
-			Name:              result.ObservatoryInformation.Observatory,
-			Site:              result.ObservatoryInformation.ObservatorySite, // Update this line with the correct field
+			Observatory: structs.Observatory{
+				Name: result.ObservatoryInformation.Observatory,
+				Site: result.ObservatoryInformation.ObservatorySite,
+			},
 			CommunicationData: result.ExistingSystem.SensorDetails.CommunicationTechniques,
 		}
 		observatoriesData.Observatories = append(observatoriesData.Observatories, communicationData)

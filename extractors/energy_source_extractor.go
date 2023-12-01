@@ -16,8 +16,10 @@ func ExtractAndSaveEnergyData(filePath string, outputFilePath string) error {
 	}{}
 	for _, result := range surveyResult.Results {
 		observatoryData := structs.ObservatoryEnergySources{
-			Name:          result.ObservatoryInformation.Observatory,
-			Site:          result.ObservatoryInformation.ObservatorySite,
+			Observatory: structs.Observatory{
+				Name: result.ObservatoryInformation.Observatory,
+				Site: result.ObservatoryInformation.ObservatorySite,
+			},
 			EnergySources: result.ExistingSystem.SensorDetails.EnergySources,
 		}
 		observatoriesData.Results = append(observatoriesData.Results, observatoryData)

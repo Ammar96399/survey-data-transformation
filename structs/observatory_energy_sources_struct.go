@@ -1,7 +1,6 @@
 package structs
 
 type ObservatoryEnergySources struct {
-	Name          string        `json:"observatory"`
-	Site          string        `json:"observatorySite"`
+	Observatory   Observatory   `json:"observatory"`
 	EnergySources EnergySources `json:"energySources"`
 }

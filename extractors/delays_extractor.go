@@ -15,8 +15,10 @@ func ExtractAndSaveDelaysData(filePath string, outputFilePath string) error {
 
 	for _, result := range surveyResult.Results {
 		observatoryData := structs.Delays{
-			Name:                     result.ObservatoryInformation.Observatory,
-			Site:                     result.ObservatoryInformation.ObservatorySite,
+			Observatory: structs.Observatory{
+				Name: result.ObservatoryInformation.Observatory,
+				Site: result.ObservatoryInformation.ObservatorySite,
+			},
 			MinimalTransmissionDelay: result.ExistingSystem.DataProcessing.MinimalTransferDelay,
 			MaximalTransmissionDelay: result.ExistingSystem.DataProcessing.MaximalTransferDelay,
 			MinimalPublishingDelay:   result.ExistingSystem.DataProcessing.MinimalPublicationDelay,
