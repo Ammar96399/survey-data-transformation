@@ -22,7 +22,7 @@ func ExtractAndSaveCommunicationData(filePath string, outputFilePath string) err
 			},
 			CommunicationData: result.ExistingSystem.SensorDetails.CommunicationTechniques,
 		}
-		observatoriesData.Observatories = append(observatoriesData.Observatories, communicationData)
+		observatoriesData.Results = append(observatoriesData.Results, communicationData)
 	}
 
 	err = utils.WriteToJsonFile(observatoriesData, FolderPath+outputFilePath)

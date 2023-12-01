@@ -8,5 +8,5 @@ type ObservatoryCommunicationData struct {
 
 // ObservatoriesCommunicationData represents the structure for aggregating communication data for all observatories
 type ObservatoriesCommunicationData struct {
-	Observatories []ObservatoryCommunicationData `json:"observatories"`
+	Results []ObservatoryCommunicationData `json:"results"`
 }

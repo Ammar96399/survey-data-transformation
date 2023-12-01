@@ -19,6 +19,7 @@ func main() {
 	inputFolder := "../result_files/extracted_results/"
 	fullInputFile := "../result_files/full_results.json"
 	inputFolderGeneratedByAi := "../result_files/generated_by_ai/"
+	inputFolderTransormed := "../result_files/transformed_results/"
 
 	// Call the extractor function
 	if err := extractor.ExtractAndSaveEnergyData(inputFile, "observatories_energy_data.json"); err != nil {
@@ -102,7 +103,6 @@ func main() {
 		inputFolder + "existing_data_processing.json",
 		inputFolder + "existing_event_response_system.json",
 		inputFolder + "existing_health_monitoring.json",
-		inputFolder + "manually_retouched_event.json",
 		inputFolder + "number_of_sensors.json",
 		inputFolder + "observatories_communication_data.json",
 		inputFolder + "observatories_energy_data.json",
@@ -117,6 +117,8 @@ func main() {
 		inputFolderGeneratedByAi + "minimal_maximal_transmission_delay.json",
 		inputFolderGeneratedByAi + "observatories_delays_in_days.json",
 		inputFolderGeneratedByAi + "observatories_person_on_site.json",
+		inputFolderTransormed + "processed_existing_data_transformation.json",
+		inputFolderTransormed + "processed_existing_event_response_system.json",
 	}
 
 	fileContent, err := os.ReadFile(inputFolder + "observatories.json")
