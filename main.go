@@ -9,6 +9,7 @@ import (
 	"survey_data_transfomation/extractors/new_extractors/existing/pre_processing"
 	"survey_data_transfomation/extractors/new_extractors/existing/sensors_overview"
 	event_detection2 "survey_data_transfomation/extractors/new_extractors/future/event_detection"
+	event_response2 "survey_data_transfomation/extractors/new_extractors/future/event_response"
 )
 
 func main() {
@@ -223,6 +224,19 @@ func main() {
 		fmt.Print("Error", err)
 	}
 	if err := event_detection2.ExtractManualDataIntegration("manual_data_integration.json"); err != nil {
+		fmt.Print("Error", err)
+	}
+
+	/*
+		Extractors for future event response
+	*/
+	if err := event_response2.ExtractLowerFrequencyData("lower_frequency_data.json"); err != nil {
+		fmt.Print("Error", err)
+	}
+	if err := event_response2.ExtractActivateNewSystems("activate_new_systems.json"); err != nil {
+		fmt.Print("Error", err)
+	}
+	if err := event_response2.ExtractHigherFrequencyData("higher_frequency_data.json"); err != nil {
 		fmt.Print("Error", err)
 	}
 }
