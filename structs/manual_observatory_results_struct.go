@@ -85,16 +85,11 @@ type ManualObservatoryResults struct {
 	} `json:"existingSystem"`
 	FutureSystem struct {
 		SensorHealthMonitoring struct {
-			IntegrateAdditionalData            bool   `json:"integrateAdditionalData"`
-			IntegrateAdditionalDataComment     string `json:"integrateAdditionalDataComment"`
-			AcceptableNotificationDelay        int    `json:"acceptableNotificationDelay"`
-			AcceptableNotificationDelayComment string `json:"acceptableNotificationDelayComment"`
-			NotificationPreferences            struct {
-				Sms                bool `json:"sms"`
-				PhoneCall          bool `json:"phoneCall"`
-				Email              bool `json:"email"`
-				MobileNotification bool `json:"mobileNotification"`
-			} `json:"notificationPreferences"`
+			IntegrateAdditionalData            bool                    `json:"integrateAdditionalData"`
+			IntegrateAdditionalDataComment     string                  `json:"integrateAdditionalDataComment"`
+			AcceptableNotificationDelay        int                     `json:"acceptableNotificationDelay"`
+			AcceptableNotificationDelayComment string                  `json:"acceptableNotificationDelayComment"`
+			NotificationPreferences            NotificationPreferences `json:"notificationPreferences"`
 		} `json:"sensorHealthMonitoring"`
 		EventDetectionSystem struct {
 			IntegrateExternalObservatories        bool   `json:"integrateExternalObservatories"`
@@ -177,4 +172,11 @@ type Automation struct {
 	AutomatedDetectionComment string `json:"automatedDetectionComment"`
 	ManualIntegration         bool   `json:"manualIntegration"`
 	ManualIntegrationComment  string `json:"manualIntegrationComment"`
+}
+
+type NotificationPreferences struct {
+	Sms                bool `json:"sms"`
+	PhoneCall          bool `json:"phoneCall"`
+	Email              bool `json:"email"`
+	MobileNotification bool `json:"mobileNotification"`
 }
