@@ -8,6 +8,7 @@ import (
 	"survey_data_transfomation/extractors/new_extractors/existing/health_monitoring"
 	"survey_data_transfomation/extractors/new_extractors/existing/pre_processing"
 	"survey_data_transfomation/extractors/new_extractors/existing/sensors_overview"
+	event_detection2 "survey_data_transfomation/extractors/new_extractors/future/event_detection"
 )
 
 func main() {
@@ -209,6 +210,19 @@ func main() {
 		fmt.Print("Error", err)
 	}
 	if err := health_monitoring.ExtractAutomatedDefectiveSensorDetection("automated_defective_sensor_detection.json"); err != nil {
+		fmt.Print("Error", err)
+	}
+
+	/*
+		Extractors for future event detection
+	*/
+	if err := event_detection2.ExtractIntegrateExternalSources("integrate_external_sources.json"); err != nil {
+		fmt.Print("Error", err)
+	}
+	if err := event_detection2.ExtractIntegrateExternalObservatories("integrate_external_observatories.json"); err != nil {
+		fmt.Print("Error", err)
+	}
+	if err := event_detection2.ExtractManualDataIntegration("manual_data_integration.json"); err != nil {
 		fmt.Print("Error", err)
 	}
 }
