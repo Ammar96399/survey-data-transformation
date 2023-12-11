@@ -21,6 +21,20 @@ func LoadSurveyResult(filePath string) (*structs.SurveyResult, error) {
 	return surveyResult, nil
 }
 
+func LoadSurveyResultManual(filePath string) (*structs.ManualObservatoryResults, error) {
+	data, err := ReadFileData(filePath)
+	if err != nil {
+		return nil, err
+	}
+
+	surveyResult, err := UnmarshalDataManual(data)
+	if err != nil {
+		return nil, err
+	}
+
+	return surveyResult, nil
+}
+
 func ReadFileData(filePath string) ([]byte, error) {
 	data, err := os.ReadFile(filePath)
 	if err != nil {
@@ -32,6 +46,15 @@ func ReadFileData(filePath string) ([]byte, error) {
 
 func UnmarshalData(data []byte) (*structs.SurveyResult, error) {
 	var surveyResult structs.SurveyResult
+	if err := json.Unmarshal(data, &surveyResult); err != nil {
+		return nil, fmt.Errorf("error unmarshalling JSON: %v", err)
+	}
+
+	return &surveyResult, nil
+}
+
+func UnmarshalDataManual(data []byte) (*structs.ManualObservatoryResults, error) {
+	var surveyResult structs.ManualObservatoryResults
 	if err := json.Unmarshal(data, &surveyResult); err != nil {
 		return nil, fmt.Errorf("error unmarshalling JSON: %v", err)
 	}

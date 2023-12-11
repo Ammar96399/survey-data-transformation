@@ -22,14 +22,10 @@ func ProcessExistingEventResponseSystem(filePath string, outputFilePath string) 
 		return fmt.Errorf("error unmarshalling JSON: %v", err)
 	}
 
-	type processedData struct {
-		ActivateAdditionalSensors bool   `json:"activateAdditionalSensors"`
-		Details                   string `json:"details"`
-	}
-
 	type result struct {
-		UnprocessedData structs.ExistingEventResponseSystem `json:"unprocessedData"`
-		ProcessedData   processedData                       `json:"processedData"`
+		Observatory               structs.Observatory `json:"observatory"`
+		ActivateAdditionalSensors bool                `json:"activateAdditionalSensors"`
+		Details                   string              `json:"details"`
 	}
 
 	processedEventResponseSystem := struct {
@@ -38,11 +34,9 @@ func ProcessExistingEventResponseSystem(filePath string, outputFilePath string) 
 
 	for _, surveyResult := range surveyResults.Results {
 		processedEventResponseSystem.Results = append(processedEventResponseSystem.Results, result{
-			UnprocessedData: surveyResult,
-			ProcessedData: processedData{
-				ActivateAdditionalSensors: getIfActivateAdditionalSensors(surveyResult.ActivateAdditionalSensors),
-				Details:                   getDetails(surveyResult.ActivateAdditionalSensors),
-			},
+			Observatory:               surveyResult.Observatory,
+			Details:                   surveyResult.ActivateAdditionalSensors,
+			ActivateAdditionalSensors: getIfActivateAdditionalSensors(surveyResult.ActivateAdditionalSensors),
 		})
 	}
 
