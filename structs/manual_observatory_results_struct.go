@@ -9,14 +9,11 @@ type ManualObservatoryResults struct {
 		SerialNumber   string `json:"serialNumber"`
 	} `json:"generalInformation"`
 	ObservatoryInformation struct {
-		Observatory     string `json:"observatory"`
-		ObservatorySite string `json:"observatorySite"`
-		GeoLocation     struct {
-			Latitude  float64 `json:"latitude"`
-			Longitude float64 `json:"longitude"`
-		} `json:"geoLocation"`
-		JobFunction string `json:"jobFunction"`
-		Question    string `json:"question"`
+		Observatory     string      `json:"observatory"`
+		ObservatorySite string      `json:"observatorySite"`
+		GeoLocation     Geolocation `json:"geoLocation"`
+		JobFunction     string      `json:"jobFunction"`
+		Question        string      `json:"question"`
 	} `json:"observatoryInformation"`
 	Personnel struct {
 		DedicatedPersonnel        float64 `json:"dedicatedPersonnel"`
@@ -179,4 +176,9 @@ type NotificationPreferences struct {
 	PhoneCall          bool `json:"phoneCall"`
 	Email              bool `json:"email"`
 	MobileNotification bool `json:"mobileNotification"`
+}
+
+type Geolocation struct {
+	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
 }

@@ -13,6 +13,7 @@ import (
 	health_monitoring2 "survey_data_transfomation/extractors/new_extractors/future/health_monitoring"
 	pre_processing2 "survey_data_transfomation/extractors/new_extractors/future/pre_processing"
 	real_time2 "survey_data_transfomation/extractors/new_extractors/future/real_time"
+	"survey_data_transfomation/extractors/new_extractors/general_information"
 )
 
 func main() {
@@ -135,4 +136,10 @@ func main() {
 		fmt.Print("Error", err)
 	}
 
+	/*
+		Extractors for general information
+	*/
+	if err := general_information.ExtractObservatoriesGeolocationGeoJson("test.geojson.json"); err != nil {
+		fmt.Print("Error", err)
+	}
 }
