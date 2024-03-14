@@ -3,12 +3,13 @@ package event_detection
 import (
 	"fmt"
 	"os"
+	"survey_data_transfomation/extractors"
 	"survey_data_transfomation/structs"
 	"survey_data_transfomation/utils"
 )
 
 func ExtractIntegrateExternalObservatories(outputFileName string) error {
-	files, err := os.ReadDir("../result_files/manual_data/manual_observatories/")
+	files, err := os.ReadDir(extractors.ObservatoriesPath)
 
 	if err != nil {
 		fmt.Printf("Error during reading directory: %v", err)
@@ -23,7 +24,7 @@ func ExtractIntegrateExternalObservatories(outputFileName string) error {
 	}{}
 
 	for _, file := range files {
-		var content, err = utils.LoadSurveyResultManual("../result_files/manual_data/manual_observatories/" + file.Name())
+		var content, err = utils.LoadSurveyResultManual(extractors.ObservatoriesPath + file.Name())
 		var result = struct {
 			Observatory                    structs.Observatory `json:"observatory"`
 			IntegrateExternalObservatories bool                `json:"integrateExternalObservatories"`

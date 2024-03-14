@@ -3,6 +3,7 @@ package health_monitoring
 import (
 	"fmt"
 	"os"
+	"survey_data_transfomation/extractors"
 	"survey_data_transfomation/structs"
 	"survey_data_transfomation/utils"
 )
@@ -11,7 +12,7 @@ const FolderPath = "../result_files/manual_data/extracted_data_from_manual_obser
 const SvelteFolderPath = "../../echarts-report/src/lib/json_files/future/health_monitoring/"
 
 func ExtractIntegrateAdditionalData(outputFileName string) error {
-	files, err := os.ReadDir("../result_files/manual_data/manual_observatories/")
+	files, err := os.ReadDir(extractors.ObservatoriesPath)
 
 	if err != nil {
 		fmt.Printf("Error during reading directory: %v", err)
@@ -26,7 +27,7 @@ func ExtractIntegrateAdditionalData(outputFileName string) error {
 	}{}
 
 	for _, file := range files {
-		var content, err = utils.LoadSurveyResultManual("../result_files/manual_data/manual_observatories/" + file.Name())
+		var content, err = utils.LoadSurveyResultManual(extractors.ObservatoriesPath + file.Name())
 		var result = struct {
 			Observatory             structs.Observatory `json:"observatory"`
 			IntegrateAdditionalData bool                `json:"integrateAdditionalData"`

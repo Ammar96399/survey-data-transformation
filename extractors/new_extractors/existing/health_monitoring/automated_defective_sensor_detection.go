@@ -3,12 +3,13 @@ package health_monitoring
 import (
 	"fmt"
 	"os"
+	"survey_data_transfomation/extractors"
 	"survey_data_transfomation/structs"
 	"survey_data_transfomation/utils"
 )
 
 func ExtractAutomatedDefectiveSensorDetection(outputFileName string) error {
-	files, err := os.ReadDir("../result_files/manual_data/manual_observatories/")
+	files, err := os.ReadDir("../../echarts-report/src/lib/json_files/observatories/")
 
 	if err != nil {
 		fmt.Printf("Error during reading directory: %v", err)
@@ -23,7 +24,7 @@ func ExtractAutomatedDefectiveSensorDetection(outputFileName string) error {
 	}{}
 
 	for _, file := range files {
-		var content, err = utils.LoadSurveyResultManual("../result_files/manual_data/manual_observatories/" + file.Name())
+		var content, err = utils.LoadSurveyResultManual(extractors.ObservatoriesPath + file.Name())
 		var result = struct {
 			Observatory                       structs.Observatory `json:"observatory"`
 			AutomatedDefectiveSensorDetection bool                `json:"automatedDefectiveSensorDetection"`

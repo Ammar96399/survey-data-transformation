@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"survey_data_transfomation/extractors/new_extractors/evaluation"
 	"survey_data_transfomation/extractors/new_extractors/existing/event_detection"
 	"survey_data_transfomation/extractors/new_extractors/existing/event_response"
 	"survey_data_transfomation/extractors/new_extractors/existing/health_monitoring"
@@ -140,6 +141,16 @@ func main() {
 		Extractors for general information
 	*/
 	if err := general_information.ExtractObservatoriesGeolocationGeoJson("test.geojson.json"); err != nil {
+		fmt.Print("Error", err)
+	}
+
+	/*
+		Evaluations
+	*/
+	if err := evaluation.ExtractFirstEvaluation("first_evaluation.json"); err != nil {
+		fmt.Print("Error", err)
+	}
+	if err := evaluation.ExtractSecondEvaluation("second_evaluation.json"); err != nil {
 		fmt.Print("Error", err)
 	}
 }

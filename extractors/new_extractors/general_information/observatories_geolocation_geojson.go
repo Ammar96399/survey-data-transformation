@@ -3,11 +3,12 @@ package general_information
 import (
 	"fmt"
 	"os"
+	"survey_data_transfomation/extractors"
 	"survey_data_transfomation/utils"
 )
 
 func ExtractObservatoriesGeolocationGeoJson(outputFileName string) error {
-	files, err := os.ReadDir("../result_files/manual_data/manual_observatories/")
+	files, err := os.ReadDir(extractors.ObservatoriesPath)
 
 	if err != nil {
 		fmt.Printf("Error during reading directory: %v", err)
@@ -28,7 +29,7 @@ func ExtractObservatoriesGeolocationGeoJson(outputFileName string) error {
 	results.Type = "FeatureCollection"
 
 	for _, file := range files {
-		var content, err = utils.LoadSurveyResultManual("../result_files/manual_data/manual_observatories/" + file.Name())
+		var content, err = utils.LoadSurveyResultManual(extractors.ObservatoriesPath + file.Name())
 		var result = struct {
 			Type     string `json:"type"`
 			Geometry struct {
